@@ -16,6 +16,7 @@ const props = defineProps({ products: Array });
 // Headers untuk Data Table
 const search = ref('');
 const headers = ref<{ key: string; title: string; sortable: boolean; align?: 'start' | 'end' | 'center' }[]>([
+    { key: 'kode_produk', title: 'Kode Produk', sortable: false, align: 'start' },
     { key: 'name', title: 'Name', sortable: false, align: 'start' },
     { key: 'unit', title: 'Unit', sortable: true, align: 'start' },
     { key: 'stock', title: 'Stock', sortable: true, align: 'start' },
@@ -35,7 +36,7 @@ const unitOptions = ref([
 const isModalOpen = ref(false);
 const isEditing = ref(false);
 const editedProductId = ref<number | null>(null);
-const productForm = ref({ name: '', unit: '', stock: 0, purchase_price: 0, selling_price: 0, description: '' });
+const productForm = ref({ kode_produk: '',name: '', unit: '', stock: 0, purchase_price: 0, selling_price: 0, description: '' });
 
 // Fungsi simpan produk (baru/edit)
 const saveProduct = () => {
@@ -71,7 +72,7 @@ const saveProduct = () => {
 
 // Fungsi reset form
 const resetForm = () => {
-    productForm.value = { name: '', unit: '', stock: 0, purchase_price: 0, selling_price: 0, description: '' };
+    productForm.value = { kode_produk: '',name: '', unit: '', stock: 0, purchase_price: 0, selling_price: 0, description: '' };
     isEditing.value = false;
     editedProductId.value = null;
     isModalOpen.value = false;
@@ -81,6 +82,7 @@ const resetForm = () => {
 const editProduct = (product: any) => {
     editedProductId.value = product.id;
     productForm.value = {
+        kode_produk:product.kode_produk,
         name: product.name,
         unit: product.unit,
         stock: Number(product.stock),
@@ -145,6 +147,7 @@ const closeModal = () => {
 
                     <v-card-text>
                         <v-container>
+                            <v-text-field v-model="productForm.kode_produk" label="Kode Produk" required></v-text-field>
                             <v-text-field v-model="productForm.name" label="Nama Produk" required></v-text-field>
                             <v-select v-model="productForm.unit" :items="unitOptions" item-title="text" item-value="value" label="Unit" required></v-select>
                             <v-text-field v-model="productForm.stock" label="Stock" type="number" required></v-text-field>

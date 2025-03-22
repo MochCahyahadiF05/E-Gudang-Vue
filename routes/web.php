@@ -27,9 +27,11 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //route yang pake resource
-Route::resource('products', ProductController::class);
-Route::resource('suppliers', SupplierController::class);
-Route::resource('customers', CustomerController::class);
+Route::middleware(['auth','verified'])->group(function (){
+    Route::resource('products', ProductController::class);
+    Route::resource('suppliers', SupplierController::class);
+    Route::resource('customers', CustomerController::class);
+});
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
