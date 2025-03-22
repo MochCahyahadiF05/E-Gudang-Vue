@@ -5,7 +5,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, BoxIcon, Folder, HandshakeIcon, LayoutGrid, UserRound, UserRoundCheckIcon, UsersRoundIcon } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -20,12 +20,17 @@ const masterDataNavItems: NavItem[] = [
     {
         title: 'Product',
         href: '/products',
-        icon: Folder,
+        icon: BoxIcon,
     },
     {
         title: 'Supplier',
         href: '/suppliers',
-        icon: Folder,
+        icon: HandshakeIcon,
+    },
+    {
+        title: 'Customer',
+        href: '/customers',
+        icon: UsersRoundIcon
     },
 ];
 
